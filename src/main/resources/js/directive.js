@@ -69,7 +69,7 @@ Vue.directive('draggable', {
     // do preparation work
     // e.g. add event listeners or other expensive stuff
     // that needs to be run only once
-    el.start = {x: 0, y:0},
+    el.start = {x: 0, y:0};
     el.onMouseMove = MouseMove.bind(el);
     el.onMouseDown = MouseDown.bind(el);
     el.onMouseUp  =  MouseUp.bind(el);
@@ -112,4 +112,4 @@ Vue.directive('draggable', {
     el.removeEventListener("mouseup",   el.onMouseUp);
     window.removeEventListener("mousemove",  el.onMouseMove);
   }
-})
+});

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="/css/style.css" rel="stylesheet" />
+    <title>Note Harness</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div id="app">
+    <!-- JOOBY-INCLUDE /includes/note-template.html -->
+</div>
+
+<script src="/js/lib/vue.js"></script>
+<script src="/js/lib/vue-resource.js"></script>
+
+<script>
+    // root app
+    new Vue({
+        el: '#app',
+        data: {
+            activeBoardIndex: 0,
+            activeDrag: null,
+            unsavedChanges: false,
+
+            boards: [{
+                title: "My retrospective for <date>",
+                notes: [],
+                initial: true
+            }]
+        },
+        computed: {
+            activeBoard: function () {
+                if (!Array.isArray(this.boards)) {
+                    return this.createBoard();
+                }
+                return this.boards[this.activeBoardIndex];
+            }
+        }
+    });
+</script>
+<!-- All other js files -->
+<script>var bus = new Vue();</script>
+<script src="/js/directive.js"></script>
+<script src="/js/note.js"></script>
+</body>
+</html>

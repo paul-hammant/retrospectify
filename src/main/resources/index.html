@@ -45,27 +45,7 @@
 
     <!-- The template for the note object -->
     <script type="text/x-template" id="custom-note-template">
-      <div class="note" v-bind:class="nClass" v-bind:style="cStyle" v-draggable="onPositionMouseMove"
-        @click.stop="" @keyup.46="removeNote">
-        <div>
-          <textarea v-model="stateContent" v-bind:style="{ fontSize: fontSize + 'em' }"></textarea>
-          <button @click="removeNote" class="note-remove">✕</button>
-          <div class="note-votes" v-show="votes > 0">
-            <transition-group name="flip" tag="span">
-              <span class="note-vote" v-for="n in votes" transition="flip" :key="n"></span>
-            </transition-group>
-          </div>
-          <div v-show="nClass.active" class="note-resize-handle" v-draggable="onSizeMouseMove"></div>
-        </div>
-        <!-- Note sub-menu, only shown when a note is in "edit state" -->
-        <div class="menu">
-          <button @click.stop="incrFontSize">A+</button>
-          <button @click.stop="decFontSize">A-</button>
-          <button class="positive" @click.stop="addVote">+</button>
-          <button class="negative" @click.stop="removeVote" :disabled="votes<=0">-</button>
-          <span>{{votes}}</span>
-        </div>
-      </div>
+      <!-- JOOBY-INCLUDE /includes/note-template.html -->
     </script>
 
     <!-- The template for the saved-boards sidebar component -->

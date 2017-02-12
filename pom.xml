@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.jooby</groupId>
+    <artifactId>jooby-project</artifactId>
+    <version>1.0.2</version>
+  </parent>
+
+  <artifactId>retrospectify-example</artifactId>
+  <groupId>com.paulhammant</groupId>
+  <version>1.0</version>
+
+  <name>retrospectify example</name>
+
+  <properties>
+    <jooby.version>1.0.2</jooby.version>
+
+    <!-- Startup class -->
+    <application.class>retrospectify.App</application.class>
+  </properties>
+
+  <dependencies>
+    <!-- Server -->
+    <dependency>
+      <groupId>org.jooby</groupId>
+      <artifactId>jooby-netty</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jooby</groupId>
+      <artifactId>jooby-jackson</artifactId>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+
+    <!-- Tests -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium.fluent</groupId>
+      <artifactId>fluent-selenium</artifactId>
+      <version>1.17</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>retrospectify-example</finalName>
+    <plugins>
+      <!-- Build fat jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <includes>
+            <include>${test-classes}</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <id>all-tests</id>
+      <properties>
+        <test-classes>**/*.java</test-classes>
+      </properties>
+    </profile>
+    <profile>
+      <id>unit-tests</id>
+      <properties>
+        <test-classes>**/*Unit*.java</test-classes>
+      </properties>
+    </profile>
+    <profile>
+      <id>functional-tests</id>
+      <properties>
+        <test-classes>**/*WebDriver*.java</test-classes>
+      </properties>
+    </profile>
+    <profile>
+      <id>integration-tests</id>
+      <properties>
+        <test-classes>**/*Integration*.java</test-classes>
+      </properties>
+    </profile>
+  </profiles>
+</project>

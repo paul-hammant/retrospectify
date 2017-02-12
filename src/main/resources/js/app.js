@@ -15,7 +15,7 @@ new Vue({
     boards: [ {
       title: "My retrospective for <date>",
       notes: [],
-      initial: true,
+      initial: true
     } ]
   },
   computed: {
@@ -243,4 +243,4 @@ new Vue({
   created: function() {
     this.loadState();
   }
-})
+});
