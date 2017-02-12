@@ -179,6 +179,14 @@ new Vue({
       if ( loadedContent ) {
         this.boards = JSON.parse(loadedContent);
       }
+
+        // GET /someUrl
+        this.$http.get('/someUrl').then((response) => {
+            console.log("yay");
+        }, (response) => {
+            console.log("noooo!");
+        });
+
     },
 
     // Saves current config to localstorage
